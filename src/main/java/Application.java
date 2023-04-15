@@ -1,34 +1,49 @@
+import Objects.Employee;
+import dao.EmployeeDAO;
+import dao.EmployeeDAOjdbc;
+
 import java.sql.*;
+import java.util.List;
 
 public class Application {
 
     public static void main(String[] args) throws SQLException {
- //       String query = "SELECT * FROM employee WHERE id=2";
-        String query = "SELECT city.city_name, employee.first_name, employee.last_name FROM city JOIN employee ON city.city_id = employee.city_id WHERE id=2";
 
-       try (Connection connection = getConnection();
-            PreparedStatement statement = connection.prepareStatement(query);
-            ResultSet resultSet = statement.executeQuery()) {
+        EmployeeDAO employeeDAO = new EmployeeDAOjdbc();
 
-           while (resultSet.next()){
-               String firstName = resultSet.getString(2);
-               String lastName = resultSet.getString(3);
-               String gendre = resultSet.getString(4);
-               String age = resultSet.getString(5);
-               System.out.println((firstName + " " + lastName + " " + gendre + " " + age));
-           }
-       }catch (SQLException e) {
-           System.out.println("Ошибка при подключении к базе данных!");
-           e.printStackTrace();
-           // Исключение для обработки возможных ошибок при подключении
-       }
+                //Задача 2.3
+        Employee employee1 = employeeDAO.addEmployee();
+        System.out.println(employee1);
+
+//        //Задача 2.4
+//        Employee employee2 = employeeDAO.updateEmployee();
+//        System.out.println(employee2);
+
+
+//        //Задача 2.5
+//        Employee employee3 = employeeDAO.deleteEmployee();
+//        System.out.println(employee3);
+
+        //Задача 2.2
+        Employee employee = employeeDAO.findById(5).get();
+        System.out.println(employee);
+
+        //Задача 2.1
+        List<Employee> employees = employeeDAO.findAllEmployee();
+        System.out.println(employees);
+
+//        //Задача 2.3
+//        Employee employee1 = employeeDAO.addEmployee();
+//        System.out.println(employee);
+
+//        //Задача 2.4
+//        Employee employee2 = employeeDAO.updateEmployee();
+//        System.out.println(employee2);
+
+
+//        //Задача 2.5
+//        Employee employee3 = employeeDAO.deleteEmployee();
+//        System.out.println(employee3);
+
     }
-
-    private static Connection getConnection() throws SQLException {
-        final String url = "jdbc:postgresql://localhost:5432/trainingbase";
-        final String name = "postgres";
-        final String password = "9245";
-        return DriverManager.getConnection(url, name, password);
-    }
-
 }
