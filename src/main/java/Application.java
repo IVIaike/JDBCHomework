@@ -1,20 +1,19 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import Objects.Employee;
+import config.HibernateConfig;
+import dao.EmployeeDAO;
+import dao.EmployeeDAOjdbc;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
+import java.util.List;
+
+import java.sql.*;
 
 public class Application {
 
     public static void main(String[] args) throws SQLException {
-       try (Connection connection = getConnection()) {
-
-       }
+        EmployeeDAO employeeDAO = new EmployeeDAOjdbc();
+        employeeDAO.findAllEmployee().forEach(System.out::println);
     }
-
-    private static Connection getConnection() throws SQLException {
-        final String url = "jdbc:postgresql://localhost:5432/trainingbase";
-        final String name = "postgres";
-        final String password = "9245";
-        return DriverManager.getConnection(url, name, password);
-    }
-
 }
