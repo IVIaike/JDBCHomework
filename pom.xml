@@ -6,8 +6,8 @@
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   <properties>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
   </properties>
   <name>JDBCHomework Maven Webapp</name>
   <url>http://maven.apache.org</url>
@@ -15,7 +15,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
 
@@ -31,6 +31,13 @@
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-compiler-plugin</artifactId>
       <version>3.11.0</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>6.1.7.Final</version>
     </dependency>
 
   </dependencies>
